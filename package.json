@@ -1,10 +1,16 @@
 {
-  "name": "newsapi",
+  "name": "news-api",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.16.1",
+    "firebase": "^3.9.0",
+    "flux": "^3.1.2",
+    "history": "^1.17.0",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1"
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
