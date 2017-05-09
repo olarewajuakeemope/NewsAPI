@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { HashRouter as Router} from 'react-router-dom';
 import Routes from './Routes';
 import * as firebase from 'firebase';
+import './styles/main.css';
 
   const config = {
     apiKey: "AIzaSyB89UfsZjSnvda76EdN4qwsjBfhvcqia78",
