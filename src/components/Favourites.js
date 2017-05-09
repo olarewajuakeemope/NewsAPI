@@ -42,18 +42,25 @@ class Favourites extends Component {
   render() {
 
         const ArticlesDetail = this.state.articles.map((detail) => {
-        return <div key={detail.url}>
-                <h3>{detail.title}</h3>
-                <img src={detail.urlToImage} />
-                <p>{detail.description}</p>
-                <button className='btn btn-small btn-default'><a href={detail.url}>Read More</a></button>             
+        return <div className='row' key={detail.url}>
+                 <div className='col-sm-3 thumbnail'>
+                   <img src={detail.urlToImage} />
+                </div>
+                <div className='col-sm-9'>
+                 <h3>{detail.title}</h3>
+                 <p><strong>source:</strong> {detail.source}</p>
+                 <p>{detail.description}</p>
+                 <button className='btn btn-small btn-default'><a href={detail.url} target='_blank'>Read More</a></button>             
                </div>
+              </div>
       });
     return (
       <div>
       {this.fetchFavourites.bind(this)}
       <FirebaseAuth />
-      {ArticlesDetail}
+      <div className='container'>
+         {ArticlesDetail}
+        </div>
       </div>
     );
   }

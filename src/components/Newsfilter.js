@@ -44,25 +44,33 @@ class Newsfilter extends Component {
       favButton = <button className='btn btn-small btn-default'><span onClick={() => {firebaseObj.addPost(firebase.auth().currentUser.uid, newsname)}}>Like</span></button>;
       favouriteButton = <button className='btn btn-small btn-default'><Link to={'/favourites/' + firebase.auth().currentUser.uid}>Favourites</Link></button>;
     }
-      return <div key={newsname.url}>
-                <h3>{newsname.title}</h3>
+      return <div className='row' key={newsname.url}>
+                 <div className='col-sm-3 thumbnail'>
+                  <img src={newsname.urlToImage} />
+                </div>
+                <div className='col-sm-9'>
+                  <h3>{newsname.title}</h3>
                 <p><a href={newsname.author}>author</a></p>
                 <h6><strong>Published at: </strong>{newsname.publishedAt}</h6>
-                <img src={newsname.urlToImage} />
                 <p>{newsname.description}</p>
-                <button className='btn btn-small btn-default'><a href={newsname.url}>Read More</a></button>{favButton}
-             </div>
+                <button className='btn btn-small btn-default'><a href={newsname.url} target='_blank'>Read More</a></button>{favButton}
+                </div>
+               </div>
     });
     return (
      <div>
       <FirebaseAuth />
-      <h1>{this.state.theSource.source} <small>(filtered by {this.state.filter})</small></h1>
-      <span><strong>filter by </strong></span>
-      <button className='btn btn-small btn-default'><Link to={url + 'top'}>top</Link></button>
-      <button className='btn btn-small btn-default'><Link to={url + 'popular'}>popular</Link></button>
-      <button className='btn btn-small btn-default'><Link to={url + 'latest'}>latest</Link></button>
-      {favouriteButton}
-      {NewsDetail}
+      <div className='container'>
+       <h1>{this.state.theSource.source} <small>(filtered by {this.state.filter})</small></h1>
+       <span><strong>filter by </strong></span>
+       <button className='btn btn-small btn-default'><Link to={url + 'top'}>top</Link></button>
+       <button className='btn btn-small btn-default'><Link to={url + 'popular'}>popular</Link></button>
+       <button className='btn btn-small btn-default'><Link to={url + 'latest'}>latest</Link></button>
+       {favouriteButton}
+      </div>
+      <div className='container'>
+       {NewsDetail}
+      </div>
      </div>
     );
   }

@@ -14,7 +14,6 @@ class Newslisting extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props);
     if(this.props.defaultSource){
       NewsActions.getNewsList(this.props.defaultSource);
     }else{
@@ -48,22 +47,28 @@ class Newslisting extends Component {
     const { articles } = this.state.newsObj;
     NewsDetail = articles.map((newsname) => {
     if(firebaseObj.userExist()) {
-      favButton = <button className='btn btn-small btn-default'><span onClick={() => {firebaseObj.addPost(firebase.auth().currentUser.uid, newsname)}}>Like</span></button>;
+      favButton = <button className='btn btn-small btn-default'><span onClick={() => {firebaseObj.addPost(firebase.auth().currentUser.uid, newsname, this.state.newsObj)}}>Like</span></button>;
         favouriteButton = <button className='btn btn-small btn-default'><Link to={'/favourites/' + firebase.auth().currentUser.uid}>Favourites</Link></button>;
     }
-        return <div key={newsname.url}>
-                <h3>{newsname.title}</h3>
+        return <div className='row' key={newsname.url}>
+                 <div className='col-sm-3 thumbnail'>
+                  <img src={newsname.urlToImage} />
+                </div>
+                <div className='col-sm-9'>
+                  <h3>{newsname.title}</h3>
                 <p><a href={newsname.author}>author</a></p>
                 <h6><strong>Published at: </strong>{newsname.publishedAt}</h6>
-                <img src={newsname.urlToImage} />
                 <p>{newsname.description}</p>
-                <button className='btn btn-small btn-default'><a href={newsname.url}>Read More</a></button>{favButton}
-             </div>
+                <button className='btn btn-small btn-default'><a href={newsname.url} target='_blank'>Read More</a></button>{favButton}
+                </div>
+               </div>
     });
     }
 
     return (
      <div>
+      <FirebaseAuth />
+     <div className='container'>
       {sourceHeader}
       {this.props.sorts}
       <span><strong>filter by </strong></span>
@@ -71,7 +76,10 @@ class Newslisting extends Component {
       <button className='btn btn-small btn-default'><Link to={url + 'popular'}>popular</Link></button>
       <button className='btn btn-small btn-default'><Link to={url + 'latest'}>latest</Link></button>
       {favouriteButton}
+      </div>
+     <div className='container'>
       {NewsDetail}
+     </div>
      </div>
     );
   }

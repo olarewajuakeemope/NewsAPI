@@ -36,13 +36,14 @@ class FirebaseAuth extends Component {
   }
 
 
-addPost(userId, article) {
+addPost(userId, article, newsObj) {
   let newPostKey = firebase.database().ref('favourites').child(userId).push().key;
   firebase.database().ref('favourites/' + userId + '/' + newPostKey).update({
     title: article.title,
     url: article.url,
     description : article.description,
-    urlToImage : article.urlToImage
+    urlToImage : article.urlToImage,
+    source : newsObj.source
   });
 }
 
