@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NewsStore from '../stores/NewsStore';
+import Share from '../share/Share';
 import * as firebase from 'firebase';
 import FirebaseAuth from './FirebaseAuth';
 
@@ -50,7 +51,11 @@ class Favourites extends Component {
                  <h3>{detail.title}</h3>
                  <p><strong>source:</strong> {detail.source}</p>
                  <p>{detail.description}</p>
-                 <button className='btn btn-small btn-default'><a href={detail.url} target='_blank'>Read More</a></button>             
+                 <button className='btn btn-small btn-default'><a href={detail.url} target='_blank'>Read More</a></button>
+                <div>
+                  <span className="share">Share via</span>
+                  <Share share={detail.url} title= {detail.title} />
+                </div>                              
                </div>
               </div>
       });

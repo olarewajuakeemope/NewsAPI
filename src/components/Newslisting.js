@@ -4,6 +4,7 @@ import FirebaseAuth from './FirebaseAuth';
 import * as firebase from 'firebase';
 import * as NewsActions from "../actions/NewsActions";
 import NewsStore from '../stores/NewsStore';
+import Share from '../share/Share';
 import axios from 'axios';
 
 class Newslisting extends Component {
@@ -60,6 +61,10 @@ class Newslisting extends Component {
                 <h6><strong>Published at: </strong>{newsname.publishedAt}</h6>
                 <p>{newsname.description}</p>
                 <button className='btn btn-small btn-default'><a href={newsname.url} target='_blank'>Read More</a></button>{favButton}
+                <div>
+                  <span className="share">Share via</span>
+                  <Share share={newsname.url} title= {newsname.title} />
+                </div>    
                 </div>
                </div>
     });

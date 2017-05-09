@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import FirebaseAuth from './FirebaseAuth';
+import Share from '../share/Share';
 import * as firebase from 'firebase';
 import axios from 'axios';
 
@@ -54,6 +55,10 @@ class Newsfilter extends Component {
                 <h6><strong>Published at: </strong>{newsname.publishedAt}</h6>
                 <p>{newsname.description}</p>
                 <button className='btn btn-small btn-default'><a href={newsname.url} target='_blank'>Read More</a></button>{favButton}
+                <div>
+                  <span className="share">Share via</span>
+                  <Share share={newsname.url} title= {newsname.title} />
+                </div>   
                 </div>
                </div>
     });
