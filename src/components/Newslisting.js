@@ -15,11 +15,7 @@ class Newslisting extends Component {
   }
 
   componentWillMount() {
-    if(this.props.defaultSource){
-      NewsActions.getNewsList(this.props.defaultSource);
-    }else{
       NewsActions.getNewsList(this.props.match.params.source);
-    }
       NewsStore.on('newsList', this.getSourceNews.bind(this));
   }
 
