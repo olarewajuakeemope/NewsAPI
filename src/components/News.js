@@ -26,6 +26,20 @@ getNews(){
   console.log('in the getnews method');
 }
 
+searchSources(e) {
+    e.preventDefault();
+    let filterlist = [];
+    const query = e.target.value;
+    filterlist = this.state.news.filter((source) => {
+      if (source.name.toLowerCase().indexOf(query.toLowerCase()) > -1) {
+        return source;
+      }
+    });
+    this.setState({
+      news: filterlist
+    });
+}
+
   render() {
     console.log(this.state.news);
     const { news } = this.state;
@@ -35,7 +49,15 @@ getNews(){
     });
     return (
       <div>
-        <h1>News Sites</h1>
+        <div className='container'>
+         <div className='row'>
+          <div className='col-sm-4 col-sm-offset-4'>
+          <h1 className='text-center'>News Sites</h1>
+           <input type='text' className='form-control' onKeyUp={this.searchSources.bind(this)} placeholder='Search for sources..' title='Type in a search' />
+           <p></p>
+          </div>
+         </div>
+       </div>  
         <ul className='list-group'>
         {NewsList}
         </ul>
