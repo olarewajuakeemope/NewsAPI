@@ -44,30 +44,34 @@ class Newslisting extends Component {
       
       let sortArray = this.props.match.params.sorts.split('+');
       sortButtons = sortArray.map((sortValue) => {
-         return <button className='btn btn-small btn-default' onClick={() => {NewsActions.getFilter(this.props.match.params.source, sortValue)}}>{sortValue}</button>
+         return <button className='w3-btn w3-white w3-border w3-border-blue w3-round-small' onClick={() => {NewsActions.getFilter(this.props.match.params.source, sortValue)}}>{sortValue}</button>
       });
 
     const { articles } = this.state.newsObj;
     NewsDetail = articles.map((newsname) => {
     if(firebaseObj.userExist()) {
-      favButton = <button className='btn btn-small btn-default'><span onClick={() => {firebaseObj.addPost(firebase.auth().currentUser.uid, newsname, this.state.newsObj)}}>Like</span></button>;
+      favButton = <button className='w3-btn w3-white w3-border w3-round-small'><span onClick={() => {firebaseObj.addPost(firebase.auth().currentUser.uid, newsname, this.state.newsObj)}}>like</span></button>;
     }
-        return <div className='row' key={newsname.url}>
+        return <div className='panel panel-default' key={newsname.url}>
+                <div className='panel-body'>
+                 <div className='panel-heading'>
+                  <h3>{newsname.title}</h3>
+                </div>
                  <div className='col-sm-3 thumbnail'>
                   <img src={newsname.urlToImage} />
                 </div>
                 <div className='col-sm-9'>
-                  <h3>{newsname.title}</h3>
-                <p><a href={newsname.author}>author</a></p>
-                <h6><strong>Published at: </strong>{newsname.publishedAt}</h6>
+                <p><strong>By: </strong>{newsname.author}</p>
+                <p><strong>Published at: </strong>{newsname.publishedAt}</p>
                 <p>{newsname.description}</p>
-                <button className='btn btn-small btn-default'><a href={newsname.url} target='_blank'>Read More</a></button>{favButton}
+                <button className='w3-btn w3-white w3-border w3-round-small'><a href={newsname.url} target='_blank'>Read More</a></button>{favButton}
                 <div>
                   <span className="share">Share via</span>
                   <Share share={newsname.url} title= {newsname.title} />
                 </div>    
                 </div>
                </div>
+              </div>
     });
     }
 
@@ -81,7 +85,9 @@ class Newslisting extends Component {
       {sortButtons}
       </div>
      <div className='container'>
+      <div className='panel-group'>
       {NewsDetail}
+      </div>
      </div>
      </div>
     );
