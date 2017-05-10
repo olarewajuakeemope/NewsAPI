@@ -44,7 +44,7 @@ class Newslisting extends Component {
       
       let sortArray = this.props.match.params.sorts.split('+');
       sortButtons = sortArray.map((sortValue) => {
-         return <button className='w3-btn w3-white w3-border w3-border-blue w3-round-small' onClick={() => {NewsActions.getFilter(this.props.match.params.source, sortValue)}}>{sortValue}</button>
+         return <button className='w3-btn w3-white w3-border w3-border-white w3-round-small' onClick={() => {NewsActions.getFilter(this.props.match.params.source, sortValue)}}>{sortValue}</button>
       });
 
     const { articles } = this.state.newsObj;
@@ -81,7 +81,7 @@ class Newslisting extends Component {
      <div className='container'>
       {sourceHeader}
       {this.props.sorts}
-      <span><strong>filter by </strong></span>
+      <span><strong>filter by: </strong></span>
       {sortButtons}
       </div>
      <div className='container'>
