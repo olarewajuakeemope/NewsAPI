@@ -57,8 +57,7 @@ userExist() {
   login() {
     var provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('https://www.googleapis.com/auth/plus.login');
-    firebase.auth().signInWithRedirect(provider);
-    firebase.auth().getRedirectResult().then(result => {       
+    firebase.auth().signInWithPopup(provider).then(result => {       
       window.location.reload()
     });
   }
