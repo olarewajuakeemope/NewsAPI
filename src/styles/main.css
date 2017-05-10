@@ -55,8 +55,7 @@
 .Demo__some-network {
   display: inline-block;
   margin-right: 15px;
-  text-align: center;
-  cursor: pointer; }
+  text-align: center; }
 
 .info {
   background-color: white;
