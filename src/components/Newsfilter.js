@@ -43,7 +43,6 @@ class Newsfilter extends Component {
     const NewsDetail = news.map((newsname) => {
     if(firebaseObj.userExist()) {
       favButton = <button className='btn btn-small btn-default'><span onClick={() => {firebaseObj.addPost(firebase.auth().currentUser.uid, newsname)}}>Like</span></button>;
-      favouriteButton = <button className='btn btn-small btn-default'><Link to={'/favourites/' + firebase.auth().currentUser.uid}>Favourites</Link></button>;
     }
       return <div className='row' key={newsname.url}>
                  <div className='col-sm-3 thumbnail'>
@@ -71,7 +70,6 @@ class Newsfilter extends Component {
        <button className='btn btn-small btn-default'><Link to={url + 'top'}>top</Link></button>
        <button className='btn btn-small btn-default'><Link to={url + 'popular'}>popular</Link></button>
        <button className='btn btn-small btn-default'><Link to={url + 'latest'}>latest</Link></button>
-       {favouriteButton}
       </div>
       <div className='container'>
        {NewsDetail}

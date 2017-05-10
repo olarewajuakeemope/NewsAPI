@@ -8,7 +8,7 @@ class FirebaseAuth extends Component {
   constructor() {
     super();
     this.state = {
-        user: <div className="navtop">
+      user: <div className="navtop">
         <nav className="navbar">
           <div className="container-fluid">
             <div className="navbar-header">
