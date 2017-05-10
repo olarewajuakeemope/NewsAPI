@@ -17,6 +17,7 @@ class Newslisting extends Component {
   componentWillMount() {
       NewsActions.getNewsList(this.props.match.params.source);
       NewsStore.on('newsList', this.getSourceNews.bind(this));
+      NewsStore.on('filterList', this.getSourceNews.bind(this));
   }
 
   getSourceNews(){
@@ -72,9 +73,9 @@ class Newslisting extends Component {
       {sourceHeader}
       {this.props.sorts}
       <span><strong>filter by </strong></span>
-      <button className='btn btn-small btn-default'><Link to={url + 'top'}>top</Link></button>
-      <button className='btn btn-small btn-default'><Link to={url + 'popular'}>popular</Link></button>
-      <button className='btn btn-small btn-default'><Link to={url + 'latest'}>latest</Link></button>
+      <button className='btn btn-small btn-default' onClick={() => {NewsActions.getFilter(this.props.match.params.source, 'top')}}>top</button>
+      <button className='btn btn-small btn-default' onClick={() => {NewsActions.getFilter(this.props.match.params.source, 'popular')}}>popular</button>
+      <button className='btn btn-small btn-default' onClick={() => {NewsActions.getFilter(this.props.match.params.source, 'latest')}}>latest</button>
       </div>
      <div className='container'>
       {NewsDetail}

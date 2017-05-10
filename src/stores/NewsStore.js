@@ -36,9 +36,12 @@ class NewsStore extends EventEmitter {
         this.emit('sourceList');
   		}
       case 'NEWS_LIST': {
-        console.log("inside store" ,action.data)
         this.newsListing = action.data;
         this.emit('newsList');
+      }
+      case 'NEWS_FILTER': {
+        this.newsListing = action.data;
+        this.emit('filterList');
       }
   	}
 
