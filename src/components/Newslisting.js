@@ -34,13 +34,18 @@ class Newslisting extends Component {
     let favouriteButton = '';
     let NewsDetail = '';
     let sourceHeader = '';
+    let sortButtons = '';
 
     if(!this.state.newsObj){
      NewsDetail = <h1>Loading...</h1>;
     }else{
       sourceHeader = <h1>{this.state.newsObj.source}</h1>;
-      url = '/newsfilter/' + this.state.newsObj.source + '/';
       let firebaseObj = new FirebaseAuth;
+      
+      let sortArray = this.props.match.params.sorts.split('+');
+      sortButtons = sortArray.map((sortValue) => {
+         return <button className='btn btn-small btn-default' onClick={() => {NewsActions.getFilter(this.props.match.params.source, sortValue)}}>{sortValue}</button>
+      });
 
     const { articles } = this.state.newsObj;
     NewsDetail = articles.map((newsname) => {
@@ -73,9 +78,7 @@ class Newslisting extends Component {
       {sourceHeader}
       {this.props.sorts}
       <span><strong>filter by </strong></span>
-      <button className='btn btn-small btn-default' onClick={() => {NewsActions.getFilter(this.props.match.params.source, 'top')}}>top</button>
-      <button className='btn btn-small btn-default' onClick={() => {NewsActions.getFilter(this.props.match.params.source, 'popular')}}>popular</button>
-      <button className='btn btn-small btn-default' onClick={() => {NewsActions.getFilter(this.props.match.params.source, 'latest')}}>latest</button>
+      {sortButtons}
       </div>
      <div className='container'>
       {NewsDetail}

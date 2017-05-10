@@ -41,10 +41,13 @@ searchSources(e) {
 }
 
   render() {
-    console.log(this.state.news);
+
     const { news } = this.state;
     const NewsList = news.map((newsname) => {
-      let url = '/newslisting/' + newsname.id;
+      let sortArrayString = newsname.sortBysAvailable.toString();
+      let commaChanged = sortArrayString.replace(',','+');
+      let url = '/newslisting/' + newsname.id + '/' + commaChanged;
+      
       return <SourceList key={newsname.id} sorts={newsname.sortBysAvailable} url={url} name={newsname.name}/>
     });
     return (
