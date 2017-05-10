@@ -8,7 +8,7 @@ class FirebaseAuth extends Component {
   constructor() {
     super();
     this.state = {
-      user: <div className="navtop">
+        user: <div className="navtop">
         <nav className="navbar">
           <div className="container-fluid">
             <div className="navbar-header">
@@ -25,8 +25,8 @@ class FirebaseAuth extends Component {
               <li className="active"><Link to='/'>News</Link></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">              
-              <li className="hide" id="btnLogin" onClick={this.login.bind(this)}><a href="#">Login</a></li>
-              <li id="btnLogout" className="active" onClick={this.logout.bind(this)}><a href="#">Logout</a></li>
+              <li className="active" id="btnLogin" onClick={this.login.bind(this)}><a href="#">Login</a></li>
+              <li id="btnLogout" className="hide"><a href="#">Logout</a></li>
             </ul>
             </div>
           </div>
@@ -74,10 +74,8 @@ userExist() {
     const auth = firebase.auth();
     auth.onAuthStateChanged(user => {
      if (user) {
-
-     } else {
       this.setState({
-        user: <div className="navtop">
+      user: <div className="navtop">
         <nav className="navbar">
           <div className="container-fluid">
             <div className="navbar-header">
@@ -92,16 +90,19 @@ userExist() {
             <div className="collapse navbar-collapse" id ="bs">
             <ul className="nav navbar-nav">
               <li className="active"><Link to='/'>News</Link></li>
+              <li><Link to={'/favourites/' + firebase.auth().currentUser.uid}>Favourites</Link></li>
             </ul>
             <ul className="nav navbar-nav navbar-right">              
-              <li className="active" id="btnLogin" onClick={this.login.bind(this)}><a href="#">Login</a></li>
-              <li id="btnLogout" className="hide"><a href="#">Logout</a></li>
+              <li className="hide" id="btnLogin" onClick={this.login.bind(this)}><a href="#">Login</a></li>
+              <li id="btnLogout" className="active" onClick={this.logout.bind(this)}><a href="#">Logout</a></li>
             </ul>
             </div>
           </div>
         </nav>
       </div>
       });
+     } else {
+
      }
     });
   }
