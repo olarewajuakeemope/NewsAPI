@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import NewsStore from '../stores/NewsStore';
 import SourceList from './SourceList';
 import * as NewsActions from "../actions/NewsActions";
-import axios from 'axios';
 
 class News extends Component {
 
@@ -23,7 +21,6 @@ getNews(){
   this.setState({
     news: NewsStore.getAll()
   });
-  console.log('in the getnews method');
 }
 
 searchSources(e) {

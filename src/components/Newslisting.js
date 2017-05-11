@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import FirebaseAuth from './FirebaseAuth';
 import * as firebase from 'firebase';
 import * as NewsActions from "../actions/NewsActions";
 import NewsStore from '../stores/NewsStore';
 import Share from '../share/Share';
-import axios from 'axios';
 
 class Newslisting extends Component {
 
@@ -21,17 +19,13 @@ class Newslisting extends Component {
   }
 
   getSourceNews(){
-    console.log('in the newsListing method top', this.state);
    this.setState({
     newsObj: NewsStore.getNewsListing()
    });
-   console.log('in the newsListing method');
   }
 
   render() {
-    let url = '';
     let favButton = '';
-    let favouriteButton = '';
     let NewsDetail = '';
     let sourceHeader = '';
     let sortButtons = '';
@@ -58,7 +52,7 @@ class Newslisting extends Component {
                   <h3>{newsname.title}</h3>
                 </div>
                  <div className='col-sm-3 thumbnail'>
-                  <img src={newsname.urlToImage} />
+                  <img src={newsname.urlToImage} alt={newsname.title}/>
                 </div>
                 <div className='col-sm-9'>
                 <p><strong>By: </strong>{newsname.author}</p>
@@ -67,7 +61,7 @@ class Newslisting extends Component {
                 <button className='w3-btn w3-white w3-border w3-round-small'><a href={newsname.url} target='_blank'>Read More</a></button>{favButton}
                 <div>
                   <span className="share">Share via</span>
-                  <Share share={newsname.url} title= {newsname.title} />
+                  <Share share={newsname.url} title={newsname.title} />
                 </div>    
                 </div>
                </div>

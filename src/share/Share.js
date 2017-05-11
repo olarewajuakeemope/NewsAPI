@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   ShareButtons,
-  ShareCounts,
   generateShareIcon,
 } from 'react-share';
 

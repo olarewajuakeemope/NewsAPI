@@ -20,7 +20,7 @@ class FirebaseAuth extends Component {
       </button>
               <a className="navbar-brand" href="/">NewsAPI</a>
             </div>
-            <div className="collapse navbar-collapse" id ="bs">
+            <div className="collapse navbar-collapse" id="bs">
             <ul className="nav navbar-nav">
               <li className="active"><Link to='/'>News</Link></li>
             </ul>
@@ -87,7 +87,7 @@ userExist() {
       </button>
               <a className="navbar-brand" href="/">NewsAPI</a>
             </div>
-            <div className="collapse navbar-collapse" id ="bs">
+            <div className="collapse navbar-collapse" id="bs">
             <ul className="nav navbar-nav">
               <li className="active"><Link to='/'>News</Link></li>
               <li><Link to={'/favourites/' + firebase.auth().currentUser.uid}>Favourites</Link></li>

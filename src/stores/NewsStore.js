@@ -15,7 +15,6 @@ class NewsStore extends EventEmitter {
   }
 
  getNewsListing() {
-  console.log('in getnewlisting sotre method', this.newsListing);
     return this.newsListing;
   }
 
@@ -29,19 +28,24 @@ class NewsStore extends EventEmitter {
   }
 
   handleActions(action) {
-  	//console.log('action recieved in newsStore', action);
   	switch(action.type) {
   		case 'CREATE_NEWS': {
         this.news = action.data;
         this.emit('sourceList');
+        break;
   		}
       case 'NEWS_LIST': {
         this.newsListing = action.data;
         this.emit('newsList');
+        break;
       }
       case 'NEWS_FILTER': {
         this.newsListing = action.data;
         this.emit('filterList');
+        break;
+      }
+      default: {
+
       }
   	}
 

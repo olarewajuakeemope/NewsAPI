@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import NewsStore from '../stores/NewsStore';
 import Share from '../share/Share';
 import * as firebase from 'firebase';
 import FirebaseAuth from './FirebaseAuth';
@@ -15,7 +14,6 @@ class Favourites extends Component {
 
   componentWillMount() {
     let articlesArray = [];
-    let test = 1;
     firebase.database().ref('/favourites/' + this.props.match.params.user).once('value').then((snapshot) => {
       var articles = snapshot.val();
         Object.keys(articles).forEach((postId) => {
@@ -23,21 +21,9 @@ class Favourites extends Component {
         articlesArray.push(post);
       });
     this.setState({
-     articles: articlesArray,
+     articles : articlesArray,
     });
-    });
-
-    console.log(this.state);
-    console.log(articlesArray);
-    console.log(this.state.articles);
-  }
-
-  fetchFavourites() {
-    console.log('Got here');
-    this.setState({
-      bar: Date.now()
-    });
-    console.log(this.state);
+   });
   }
 
   render() {
@@ -49,7 +35,7 @@ class Favourites extends Component {
                   <h3>{detail.title}</h3>
                  </div>
                  <div className='col-sm-3 thumbnail'>
-                   <img src={detail.urlToImage} />
+                   <img src={detail.urlToImage} alt={detail.title}/>
                 </div>
                 <div className='col-sm-9'>
                  <p><strong>source:</strong> {detail.source}</p>
@@ -57,7 +43,7 @@ class Favourites extends Component {
                  <button className='btn btn-small btn-default'><a href={detail.url} target='_blank'>Read More</a></button>
                 <div>
                   <span className="share">Share via</span>
-                  <Share share={detail.url} title= {detail.title} />
+                  <Share share={detail.url} title={detail.title} />
                 </div> 
                </div>                             
               </div>
@@ -65,7 +51,6 @@ class Favourites extends Component {
       });
     return (
       <div>
-      {this.fetchFavourites.bind(this)}
       <FirebaseAuth />
       <div className='container'>
        <div className='panel-group'>
